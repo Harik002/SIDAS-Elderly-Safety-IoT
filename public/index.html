@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIDAS - Sound Intrusion Detection System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="shield-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 6V12C4 16.5 7 20.5 12 22C17 20.5 20 16.5 20 12V6L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="title-group">
+                        <h1>SIDAS</h1>
+                        <p class="subtitle">Sound Intrusion Detection & Alert System</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="connection-status">
+                        <span class="status-dot"></span>
+                        <span id="connectionText">SYSTEM ONLINE</span>
+                    </div>
+                    <div class="clock" id="clock"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            
+            <!-- Top Stats Row -->
+            <div class="stats-grid">
+                
+                <!-- Live Status Panel -->
+                <div class="stat-card status-card" id="statusCard">
+                    <div class="card-header">
+                        <h3>LIVE STATUS</h3>
+                    </div>
+                    <div class="status-display">
+                        <div class="status-icon" id="statusIcon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="status-text" id="statusText">SAFE</div>
+                        <div class="status-subtext" id="statusSubtext">No intrusion detected</div>
+                    </div>
+                </div>
+
+                <!-- Total Alerts Counter -->
+                <div class="stat-card">
+                    <div class="card-header">
+                        <h3>TOTAL ALERTS</h3>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 21h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-value" id="totalAlerts">0</div>
+                    <div class="stat-label">Intrusions Logged</div>
+                </div>
+
+                <!-- Last Alert Time -->
+                <div class="stat-card">
+                    <div class="card-header">
+                        <h3>LAST ALERT</h3>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-value small" id="lastAlertTime">--:--:--</div>
+                    <div class="stat-label" id="lastAlertDate">No alerts yet</div>
+                </div>
+
+                <!-- System Uptime -->
+                <div class="stat-card">
+                    <div class="card-header">
+                        <h3>UPTIME</h3>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-value small" id="uptime">00:00:00</div>
+                    <div class="stat-label">System Active</div>
+                </div>
+
+            </div>
+
+            <!-- Alert Log Section -->
+            <div class="log-section">
+                <div class="log-header">
+                    <h2>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        ALERT LOGS
+                    </h2>
+                    <button class="reset-btn" id="resetBtn">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        CLEAR LOGS
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="alert-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>TIMESTAMP</th>
+                                <th>TYPE</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alertTableBody">
+                            <tr class="no-data">
+                                <td colspan="4">
+                                    <div class="no-data-content">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                        </svg>
+                                        <p>No alerts detected</p>
+                                        <span>System monitoring active</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ESP32 IoT Security System | Developed with ❤️ for Advanced Security</p>
+            <p class="version">v1.0.0 | Dashboard Refresh: <span id="refreshStatus">Active</span></p>
+        </footer>
+
+    </div>
+
+    <!-- Alert Sound -->
+    <audio id="alertSound" preload="auto">
+        <source src="data:audio/wav;base64,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" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
